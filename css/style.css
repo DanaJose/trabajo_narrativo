@@ -1,0 +1,158 @@
+¡Claro! Acá va el CSS completo corregido:
+css/* ── RESET ── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+/* ── BODY ── */
+body {
+    font-family: 'Comic Neue', cursive;
+    background-color: #19191a;
+    background-image: url("../img/fondo.jpg");
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-blend-mode: multiply;
+    color: #f0e8d0;
+    line-height: 1.8;
+    font-size: 1.3rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+ 
+/* ── CONTENEDOR PRINCIPAL ── */
+.contenedor-de-entrada {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 3rem 2rem 2rem;
+    background: rgba(14, 11, 20, 0.72);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(200, 168, 75, 0.18);
+    border-radius: 10px;
+}
+ 
+/* ── HEADER ── */
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(200, 168, 75, 0.18);
+}
+ 
+/* ── TÍTULOS ── */
+h1 {
+    font-family: 'Bangers', cursive;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 400;
+    font-size: 2.5 rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.5rem;
+    text-shadow: 3px 3px 0px rgba(0,0,0,0.5), 0 0 20px rgba(200,168,75,0.3);
+}
+ 
+h2 {
+    font-family: 'Bangers', cursive;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-align: center;
+    background-color: rgba(0, 212, 255, 0.08);
+    padding: 0.5rem 1.5rem;
+    border-left: 4px solid #526bbe;
+    border-right: 4px solid #526bbe;
+    color: red;
+    font-size: 2.2rem;
+    margin-top: 0.5rem;
+}
+ 
+/* ── ACENTOS DE TEXTO ── */
+.nombre-acento {
+    font-family: 'Bangers', cursive;
+    font-size: 1.3em;
+    letter-spacing: 0.1em;
+    color: #00d4ff;
+    text-shadow: 0 0 18px rgba(0, 212, 255, 0.35);
+}
+ 
+.codigo {
+    font-family: 'Bangers', cursive;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    display: inline-block;
+    padding: 0.3rem 1.2rem;
+    border-left: 4px solid #c8a84b;
+    color: #F2B21B;
+}
+ 
+.cubito {
+    font-family: 'Comic Neue', cursive;
+    font-weight: 400;
+    font-style: italic;
+    display: inline-block;
+    padding: 0.3rem 1.2rem;
+    border-left: 4px solid rgba(200, 168, 75, 0.4);
+    color: #d8e8f0;
+}
+ 
+.rafa {
+    font-family: 'Comic Neue', cursive;
+    font-size: 0.75em;
+    color: rgba(200, 168, 75, 0.55);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 0.4rem;
+}
+ 
+/* ── PÁRRAFOS ── */
+p {
+    font-family: 'Comic Neue', cursive;
+    text-align: center;
+    margin-top: 0.8rem;
+}
+ 
+/* ── NAV ── */
+nav {
+    background-color: rgba(14, 15, 15, 0.85);
+    text-align: center;
+    border-top: 1px solid rgba(200, 168, 75, 0.18);
+    border-radius: 0 0 8px 8px;
+    padding: 0.3rem 0;
+}
+ 
+nav ul { margin: 3px; padding: 0; list-style-type: none; }
+nav li { display: inline-block; }
+ 
+nav a {
+    font-family: 'Comic Neue', cursive;
+    font-weight: 700;
+    font-size: 1em;
+    line-height: 2.2em;
+    padding: 0.4em 1.6em;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    background-color: #000508;
+    color: #526bbe;
+    transition: background-color 0.15s, color 0.15s;
+}
+ 
+nav a:link, nav a:visited {
+    color: #526bbe;
+}
+ 
+nav a:hover {
+    background-color: #526bbe;
+    color: #FFF;
+}
+ 
+nav a:active {
+    background-color: #F00;
+    color: #FFF;
+}
+ 
+/* ── UTILIDAD ── */
+.centrado { text-align: center; }

@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa Narrativo — Doña Elena de la Mancha</title>
+ 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&display=swap');
+ 
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+:root {
+  --bg: #0e0b14;
+  --bg2: #15111f;
+  --bg3: #1d1828;
+  --border: rgba(200,168,75,0.18);
+  --gold: #c8a84b;
+  --gold-dim: rgba(200,168,75,0.4);
+  --text: #f0e8d0;
+  --text-dim: rgba(240,232,208,0.55);
+  --purple: #534AB7;
+  --purple-light: #EEEDFE;
+  --coral: #993C1D;
+  --coral-light: #FAECE7;
+  --teal: #0F6E56;
+  --teal-light: #E1F5EE;
+  --amber: #854F0B;
+  --amber-light: #FAEEDA;
+  --green: #3B6D11;
+  --green-light: #EAF3DE;
+  --red: #A32D2D;
+  --red-light: #FCEBEB;
+  --panel-w: 300px;
+  --topbar-h: 58px;
+}
+ 
+body {
+  font-family: 'Barlow', 'Lora', Georgia, sans-serif;
+  background-color: #19191a;
+  background-image: url("../img/fondo.jpg.jpg");
+  background-position: center;
+  background-size: cover;
+  background-blend-mode: multiply;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+ 
+/* ── BARRA SUPERIOR ── */
+#topbar {
+  height: var(--topbar-h);
+  flex-shrink: 0;
+  background-color: rgba(14, 15, 15, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  gap: 20px;
+  position: relative;
+  z-index: 20;
+}
+ 
+/* Línea decorativa dorada superior */
+#topbar::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.6;
+}
+ 
+#topbar-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+ 
+#topbar-titles .main-title {
+  font-family: 'Barlow', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+ 
+#topbar-titles .sub-title {
+  font-family: 'Barlow', sans-serif;
+  font-size: 11px;
+  color: var(--text-dim);
+  font-style: italic;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+ 
+#topbar-quote {
+  font-size: 10.5px;
+  font-style: italic;
+  color: var(--text-dim);
+  text-align: center;
+  flex: 1;
+  padding: 0 16px;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  line-height: 1.5;
+  display: none; /* se muestra en pantallas anchas */
+}
+ 
+#topbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+ 
+#topbar-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0.4em 1em;
+  background-color: #000508;
+  color: #526bbe;
+  border: none;
+  border-radius: 0;
+  font-family: 'DM Mono', monospace;
+  font-size: 1em;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: background-color 0.15s, color 0.15s;
+  white-space: nowrap;
+  line-height: 2.2em;
+}
+ 
+#topbar-nav a:hover {
+  background-color: #526bbe;
+  color: #FFF;
+  border-color: transparent;
+}
+ 
+#topbar-nav a:active {
+  background-color: #F00;
+  color: #FFF;
+}
+ 
+#topbar-nav a .nav-num {
+  font-size: 9px;
+  color: var(--gold-dim);
+}
+ 
+/* ── CONTENIDO PRINCIPAL ── */
+#main-layout {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+ 
+/* ── PANEL LATERAL ── */
+#panel {
+  width: var(--panel-w);
+  flex-shrink: 0;
+  background: rgba(14, 11, 20, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+ 
+#panel-header {
+  padding: 20px 20px 14px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(21, 17, 31, 0.5);
+}
+ 
+#panel-header h1 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+}
+ 
+#panel-header p {
+  font-size: 11px;
+  color: var(--text-dim);
+  font-family: 'DM Mono', monospace;
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+ 
+#panel-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+ 
+#panel-content::-webkit-scrollbar { width: 4px; }
+#panel-content::-webkit-scrollbar-track { background: transparent; }
+#panel-content::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+ 
+#panel-placeholder {
+  color: var(--text-dim);
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.7;
+  text-align: center;
+  margin-top: 40px;
+}
+ 
+#panel-placeholder .icon { font-size: 28px; display: block; margin-bottom: 12px; opacity: 0.4; }
+ 
+#scene-info { display: none; }
+#scene-info.visible { display: block; }
+ 
+.scene-chapter {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+ 
+.scene-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+ 
+.scene-narration {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--text-dim);
+  line-height: 1.75;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+ 
+.scene-section-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--gold-dim);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+ 
+.scene-characters { margin-bottom: 16px; }
+ 
+.character-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 10px 4px 6px;
+  font-size: 12px;
+  color: var(--text);
+  margin: 3px 3px 3px 0;
+}
+ 
+.character-pill .avatar { font-size: 14px; }
+ 
+.scene-choices { margin-bottom: 16px; }
+ 
+.choice-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  background: var(--bg3);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+ 
+.choice-item:hover {
+  border-color: var(--gold-dim);
+  color: var(--text);
+}
+ 
+.choice-icon { flex-shrink: 0; font-size: 14px; }
+.choice-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: var(--gold-dim);
+  display: block;
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+ 
+.endings-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(59,109,17,0.15);
+  border: 1px solid rgba(59,109,17,0.4);
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 12px;
+  color: #7ec155;
+}
+ 
+/* ── ZONA DEL MAPA ── */
+#map-area {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+}
+ 
+#map-area.dragging { cursor: grabbing; }
+ 
+#map-canvas {
+  position: absolute;
+  top: 0; left: 0;
+  transform-origin: 0 0;
+  user-select: none;
+}
+ 
+/* ── CONTROLES ── */
+#controls {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 10;
+}
+ 
+.ctrl-btn {
+  width: 32px; height: 32px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.15s;
+  font-family: monospace;
+}
+ 
+.ctrl-btn:hover { border-color: var(--gold-dim); }
+ 
+#zoom-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+  text-align: center;
+}
+ 
+/* ── LEYENDA ── */
+#legend {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  z-index: 10;
+}
+ 
+.legend-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: var(--gold-dim);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+ 
+.legend-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-bottom: 5px;
+}
+ 
+.legend-dot {
+  width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0;
+}
+ 
+.legend-line {
+  width: 24px; height: 2px; flex-shrink: 0;
+}
+ 
+/* ── SVG NODOS ── */
+.node-group { cursor: pointer; }
+ 
+.node-rect {
+  transition: filter 0.15s;
+  rx: 8;
+}
+ 
+.node-group:hover .node-rect {
+  filter: brightness(1.15);
+}
+ 
+.node-group.highlighted .node-rect {
+  filter: brightness(1.3) drop-shadow(0 0 6px currentColor);
+}
+ 
+.edge-path {
+  transition: opacity 0.2s, stroke-width 0.2s;
+}
+ 
+.edge-path.dimmed { opacity: 0.08; }
+.edge-path.highlighted { opacity: 1; stroke-width: 2; }
+ 
+.edge-label {
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+ 
+.edge-label.dimmed { opacity: 0.05; }
+ 
+/* ── RESPONSIVE: mostrar frase en pantallas anchas ── */
+@media (min-width: 900px) {
+  #topbar-quote { display: block; }
+}
+</style>
+</head>
+<body>
+ 
+<!-- ══ BARRA SUPERIOR ══ -->
+<header id="topbar">
+  <div id="topbar-titles">
+    <span class="main-title">Desmontaje y Reprogramación del Relato</span>
+    <span class="sub-title">Doña Elena de la Mancha</span>
+  </div>
+ 
+  <div id="topbar-quote">
+    <em>"En un sistema que nos quiere insumisxs, la resistencia es la clave"</em>
+  </div>
+ 
+  <nav id="topbar-nav">
+    <a href="index.html">Desmontaje y Reprogramación del Relato</a>
+    <a href="etapa1.html"><span class="nav-num">01 /</span> Mapa Narrativo</a>
+    <a href="etapa2.html"><span class="nav-num">02 /</span> Propuesta Estética</a>
+  </nav>
+</header>
+ 
+<!-- ══ CUERPO PRINCIPAL ══ -->
+<div id="main-layout">
+ 
+  <!-- PANEL -->
+  <div id="panel">
+    <div id="panel-header">
+      <h1>Doña Elena de la Mancha</h1>
+      <p>Mapa narrativo · 10 finales</p>
+    </div>
+    <div id="panel-content">
+      <div id="panel-placeholder">
+        <span class="icon">🗺</span>
+        Hacé clic en cualquier nodo del mapa para ver la información de esa escena.
+      </div>
+      <div id="scene-info"></div>
+    </div>
+  </div>
+ 
+  <!-- MAPA -->
+  <div id="map-area">
+    <svg id="map-canvas" xmlns="http://www.w3.org/2000/svg"></svg>
+ 
+    <div id="legend">
+      <div class="legend-title">Referencias</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#534AB7"></div> Inicio</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#993C1D"></div> Escenas principales</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#0F6E56"></div> Nodos intermedios</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#854F0B"></div> Nodos bisagra</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#3B6D11"></div> Finales buenos</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#A32D2D"></div> Final trágico</div>
+      <div style="height:6px"></div>
+      <div class="legend-item">
+        <div class="legend-line" style="background:#c8a84b"></div> Decisión directa
+      </div>
+      <div class="legend-item">
+        <svg width="24" height="8"><line x1="0" y1="4" x2="24" y2="4" stroke="#888" stroke-width="1.5" stroke-dasharray="4 3"/></svg>
+        Desvío / regreso
+      </div>
+    </div>
+ 
+    <div id="controls">
+      <button class="ctrl-btn" onclick="zoom(1.2)">+</button>
+      <div id="zoom-label">100%</div>
+      <button class="ctrl-btn" onclick="zoom(0.8)">−</button>
+      <button class="ctrl-btn" onclick="resetView()" title="Resetear vista">⌂</button>
+    </div>
+  </div>
+ 
+</div><!-- fin #main-layout -->
+ 
+<script>
+// ════════════════════════════════════════
+// DATOS DE LA HISTORIA
+// ════════════════════════════════════════
+const SCENES = {
+  intro: {
+    id: 'intro', chapter: 'Capítulo I', label: 'El Despertar',
+    narration: 'En un barrio de Buenos Aires, no ha mucho tiempo, vivía una jubilada de cuyo nombre todos se olvidan... Doña Elena de la Mancha. Con su jubilación magra, su televisor encendido y su mente que a veces confundía el presente con batallas del pasado.',
+    characters: [{ avatar:'👵', name:'Doña Elena' }, { avatar:'🐱', name:'Rocinante (el gato)' }],
+    choices: [
+      { icon:'💊', text:'¡A la farmacia! Los remedios no pueden esperar', tag:'urgencia', next:'farmacia' },
+      { icon:'🏦', text:'Primero el banco. La plata se acaba', tag:'economía', next:'banco' },
+      { icon:'📺', text:'Mejor ver las noticias antes de salir', tag:'desvío', next:'noticiero' }
+    ],
+    endings: 10, type:'start'
+  },
+  farmacia: {
+    id: 'farmacia', chapter: 'Nodo II', label: 'La Farmacia Imposible',
+    narration: 'La farmacia del barrio se alzaba ante Doña Elena como un castillo encantado. Los precios del cartel brillaban como escudos de caballeros enemigos. El cajero automático dentro... sin efectivo.',
+    characters: [{ avatar:'👵', name:'Doña Elena' }, { avatar:'🐉', name:'Empleado (el Dragón)' }],
+    choices: [
+      { icon:'⚔️', text:'Reclamar con valentía quijotesca', tag:'lucha', next:'reclamo_farmacia' },
+      { icon:'🏦', text:'Ir al banco a sacar dinero', tag:'desvío', next:'banco' },
+      { icon:'🏠', text:'Volver a casa sin remedios', tag:'rendición', next:'plaza_vacia' }
+    ],
+    endings: 4, type:'main'
+  },
+  banco: {
+    id: 'banco', chapter: 'Nodo III', label: 'La Fila Eterna del Banco',
+    narration: 'La fila del banco se extendía como el ejército del Turco. Veinte personas delante. Un solo cajero. El número del ticket: 847. El número en el display: 812.',
+    characters: [{ avatar:'👵', name:'Doña Elena' }, { avatar:'👴', name:'Vecino en la fila' }, { avatar:'💂', name:'Guardia de seguridad' }],
+    choices: [
+      { icon:'⏳', text:'Esperar con estoicismo heroico', tag:'resistencia', next:'espera_banco' },
+      { icon:'🏧', text:'Ir al cajero automático afuera', tag:'alternativa', next:'cajero' },
+      { icon:'🚌', text:'Retirarse hacia el colectivo', tag:'huida', next:'colectivo' }
+    ],
+    endings: 4, type:'main'
+  },
+  noticiero: {
+    id: 'noticiero', chapter: 'Nodo IV', label: 'Las Voces del Televisor',
+    narration: 'El televisor encendido lanzaba sus conjuros. Economistas, panelistas, políticos: todos hablaban de jubilaciones. Doña Elena sintió que los conductores la miraban fijamente.',
+    characters: [{ avatar:'👵', name:'Doña Elena' }, { avatar:'📺', name:'Voz del televisor' }, { avatar:'👩', name:'Vecina Aldonza' }],
+    choices: [
+      { icon:'⚔️', text:'Apagar el televisor y salir a luchar', tag:'acción', next:'farmacia' },
+      { icon:'🔒', text:'Quedarse encerrada creyendo el peligro', tag:'paranoia', next:'encierro' },
+      { icon:'📞', text:'Llamar a su hija en Mar del Plata', tag:'lucidez', next:'llamada_hija' }
+    ],
+    endings: 6, type:'main'
+  },
+  reclamo_farmacia: {
+    id: 'reclamo_farmacia', chapter: 'Nodo V', label: 'El Reclamo Heroico',
+    narration: 'Doña Elena se irguió con la dignidad de un caballero andante. Sacó del bolso su libreta de reclamos del PAMI y la blandió como una espada.',
+    characters: [{ avatar:'👵', name:'Doña Elena' }, { avatar:'👩‍⚕️', name:'Farmacéutica' }],
+    choices: [
+      { icon:'🏆', text:'El supervisor aprueba la cobertura total', tag:'victoria', next:'final_victoria' },
+      { icon:'💔', text:'El sistema sigue sin funcionar', tag:'derrota', next:'remedios_perdidos' }
+    ],
+    endings: 2, type:'mid'
+  },
+  espera_banco: {
+    id: 'espera_banco', chapter: 'Nodo VI', label: 'La Espera Interminable',
+    narration: 'Cuarenta minutos después. El número avanzó solo cuatro lugares. Doña Elena cerró los ojos y comenzó a recordar cuando cobraba en ventanilla y la conocían por su nombre.',
+    characters: [{ avatar:'👵', name:'Doña Elena' }, { avatar:'🧑', name:'Joven con celular' }],
+    choices: [
+      { icon:'📱', text:'Pedir ayuda con el celular al joven', tag:'puente', next:'final_tecnologia' },
+      { icon:'🚫', text:'Rechazar: "¡Esas máquinas me persiguen!"', tag:'delirio', next:'cajero' },
+      { icon:'⏰', text:'Sentarse y esperar hasta el final', tag:'resistencia', next:'final_espera' }
+    ],
+    endings: 3, type:'mid'
+  },
+  colectivo: {
+    id: 'colectivo', chapter: 'Nodo VII', label: 'El Colectivo Fantasma',
+    narration: 'En la parada, el panel digital mostraba: "142 – 3 min". Luego "142 – 8 min". Luego "142 – No disponible". El colectivo que nunca llegaba.',
+    characters: [{ avatar:'👵', name:'Doña Elena' }, { avatar:'👩‍🦳', name:'Señora en la parada' }],
+    choices: [
+      { icon:'🚶', text:'Ir a pie por Corrientes como heroína', tag:'determinación', next:'plaza_vacia' },
+      { icon:'🚕', text:'Tomar un taxi con el último billete', tag:'sacrificio', next:'final_taxi' },
+      { icon:'🏠', text:'Regresar a casa vencida', tag:'retirada', next:'plaza_vacia' }
+    ],
+    endings: 2, type:'mid'
+  },
+  plaza_vacia: {
+    id: 'plaza_vacia', chapter: 'Nodo VIII', label: 'La Plaza Vacía',
+    narration: 'La plaza del barrio, que antes bullía de vida, estaba casi desierta. Un banco de madera partido. Las palomas como únicas testigos. Doña Elena se sentó y miró el cielo.',
+    characters: [{ avatar:'👵', name:'Doña Elena' }, { avatar:'👦', name:'Niño en bicicleta' }],
+    choices: [
+      { icon:'💬', text:'Hablar con el niño sobre el barrio de antes', tag:'memoria', next:'final_memoria' },
+      { icon:'🌅', text:'Levantarse y volver a intentarlo mañana', tag:'esperanza', next:'final_esperanza' }
+    ],
+    endings: 2, type:'hinge'
+  },
+  cajero: {
+    id: 'cajero', chapter: 'Nodo IX', label: 'El Dragón Electrónico',
+    narration: 'El cajero parpadeó. "OPERACIÓN NO DISPONIBLE". Segundo intento. "ERROR 404". Tercer intento. La tarjeta quedó dentro. El cajero la devoró.',
+    characters: [{ avatar:'👵', name:'Doña Elena' }, { avatar:'👨‍💼', name:'Empleado del banco' }],
+    choices: [
+      { icon:'⚖️', text:'Reclamo épico: ir a Defensa al Consumidor', tag:'lucha', next:'final_reclamo' },
+      { icon:'😢', text:'Sentarse en la vereda a llorar', tag:'quiebre', next:'plaza_vacia' }
+    ],
+    endings: 2, type:'mid'
+  },
+  encierro: {
+    id: 'encierro', chapter: 'Nodo X', label: 'El Laberinto Interior',
+    narration: 'Doña Elena cerró las persianas. Apagó el teléfono. Solo el televisor, que siguió hablando. Cada palabra del noticiero era una amenaza cifrada.',
+    characters: [{ avatar:'👵', name:'Doña Elena' }, { avatar:'📺', name:'Televisor (en su mente)' }],
+    choices: [
+      { icon:'🚪', text:'Al tercer día, salir a buscar ayuda', tag:'ruptura', next:'llamada_hija' },
+      { icon:'🌀', text:'Quedarse en el laberinto', tag:'delirio total', next:'final_delirio' }
+    ],
+    endings: 2, type:'mid'
+  },
+  llamada_hija: {
+    id: 'llamada_hija', chapter: 'Nodo XI', label: 'La Voz que Rompe el Encanto',
+    narration: 'El teléfono sonó tres veces. Al otro lado, la voz de su hija Claudia, desde Mar del Plata.',
+    characters: [{ avatar:'👵', name:'Doña Elena' }, { avatar:'📱', name:'Claudia (hija)' }],
+    choices: [
+      { icon:'❤️', text:'Organizar una visita y enfrentar el mundo juntas', tag:'amor', next:'final_reencuentro' },
+      { icon:'📺', text:'Cortar y volver al delirio televisivo', tag:'recaída', next:'encierro' }
+    ],
+    endings: 2, type:'hinge'
+  },
+  remedios_perdidos: {
+    id: 'remedios_perdidos', chapter: 'Nodo XII', label: 'Los Remedios Perdidos',
+    narration: 'Sin remedios, Doña Elena buscó en cada cajón. Encontró una caja con fecha vencida de 2021. Y una nota de su médico de cabecera que ya no atiende más.',
+    characters: [{ avatar:'👵', name:'Doña Elena' }, { avatar:'👩', name:'Vecina del pasillo' }],
+    choices: [
+      { icon:'🤝', text:'Aceptar la ayuda de la vecina', tag:'comunidad', next:'final_solidaridad' },
+      { icon:'💊', text:'Tomar los remedios vencidos igual', tag:'desesperación', next:'final_delirio' }
+    ],
+    endings: 2, type:'hinge'
+  },
+  final_victoria: {
+    id:'final_victoria', chapter:'Final I', label:'La Victoria de Doña Elena',
+    narration:'El supervisor aprobó la cobertura total. El empleado, avergonzado, entregó los remedios. Doña Elena salió de la farmacia con la cabeza erguida y el bastón apuntando al cielo como una espada. "¡Se puede!", gritó en la vereda. Tres vecinos aplaudieron sin saber muy bien por qué.',
+    characters:[{ avatar:'👵', name:'Doña Elena' }, { avatar:'⚔️', name:'El sistema vencido' }],
+    choices:[], endings:0, type:'end-good'
+  },
+  final_tecnologia: {
+    id:'final_tecnologia', chapter:'Final II', label:'El Puente Digital',
+    narration:'El joven le instaló la app del banco en diez minutos. Doña Elena cobró su jubilación sin moverse de la silla de plástico. "Esto me da miedo todavía", dijo. "Pero sirve".',
+    characters:[{ avatar:'👵', name:'Doña Elena' }, { avatar:'🧑', name:'El joven solidario' }],
+    choices:[], endings:0, type:'end-good'
+  },
+  final_memoria: {
+    id:'final_memoria', chapter:'Final III', label:'Lo Que Quedó',
+    narration:'Le contó al niño sobre el kiosco del señor Beto, sobre los músicos del domingo, sobre la plaza llena. El niño escuchó con ojos grandes. "¿Por qué ya no hay eso?". Doña Elena no supo responder. Pero algo en ella se alivió.',
+    characters:[{ avatar:'👵', name:'Doña Elena' }, { avatar:'👦', name:'El niño' }],
+    choices:[], endings:0, type:'end-good'
+  },
+  final_esperanza: {
+    id:'final_esperanza', chapter:'Final IV', label:'Mañana Será Otro Día',
+    narration:'Se levantó del banco de madera. Se acomodó el tapado. Miró el cielo porteño, ese cielo que no cambia aunque todo lo demás cambie. Mañana iría a la farmacia más temprano.',
+    characters:[{ avatar:'👵', name:'Doña Elena' }],
+    choices:[], endings:0, type:'end-good'
+  },
+  final_solidaridad: {
+    id:'final_solidaridad', chapter:'Final V', label:'La Red Invisible',
+    narration:'La médica vino esa misma tarde. Le recetó el genérico correcto, le explicó la cobertura, le dejó su WhatsApp. Así descubrió que el sistema sanitario también falla, pero la gente del barrio —esa red invisible— todavía sostiene.',
+    characters:[{ avatar:'👵', name:'Doña Elena' }, { avatar:'👩‍⚕️', name:'La médica vecina' }],
+    choices:[], endings:0, type:'end-good'
+  },
+  final_reencuentro: {
+    id:'final_reencuentro', chapter:'Final VI', label:'Lo Único Real',
+    narration:'Claudia llegó el sábado con medialunas y paciencia. Fueron juntas a la farmacia, al banco, al médico. Todo fue más fácil con alguien al lado. Al final del día, tomaron mate en la cocina.',
+    characters:[{ avatar:'👵', name:'Doña Elena' }, { avatar:'📱', name:'Claudia (hija)' }],
+    choices:[], endings:0, type:'end-good'
+  },
+  final_taxi: {
+    id:'final_taxi', chapter:'Final VII', label:'El Último Billete',
+    narration:'Gastó los últimos quinientos pesos en el taxi. Llegó a la farmacia a tiempo. Cobró, compró los remedios, volvió caminando seis cuadras. Llegó con los pies hinchados y sin un peso. Pero con los remedios.',
+    characters:[{ avatar:'👵', name:'Doña Elena' }, { avatar:'🚕', name:'El taxista' }],
+    choices:[], endings:0, type:'end-good'
+  },
+  final_reclamo: {
+    id:'final_reclamo', chapter:'Final VIII', label:'La Quijota del Siglo XXI',
+    narration:'Presentó el reclamo en Defensa al Consumidor. Le dieron un número de expediente. Entre 30 y 90 días hábiles. No importó. Volvió a casa con su copia firmada y sellada, y la pegó en la heladera junto a las fotos de sus nietos.',
+    characters:[{ avatar:'👵', name:'Doña Elena' }, { avatar:'⚖️', name:'Defensa al Consumidor' }],
+    choices:[], endings:0, type:'end-good'
+  },
+  final_espera: {
+    id:'final_espera', chapter:'Final IX', label:'La Persistencia',
+    narration:'Esperó dos horas y cuarenta minutos. La atendieron. Cobró su jubilación. Salió al sol de las tres de la tarde sintiéndose, por alguna razón, invencible.',
+    characters:[{ avatar:'👵', name:'Doña Elena' }],
+    choices:[], endings:0, type:'end-good'
+  },
+  final_delirio: {
+    id:'final_delirio', chapter:'Final X', label:'El Laberinto Sin Salida',
+    narration:'El televisor siguió hablando. Los días pasaron. La jubilación llegó acreditada pero Doña Elena no salió a gastarla. El gato maullaba. Los remedios se acabaron. Este final existe para ser visto. Para que alguien, en algún lugar, llame a quien vive solo.',
+    characters:[{ avatar:'👵', name:'Doña Elena' }, { avatar:'🌀', name:'El laberinto' }],
+    choices:[], endings:0, type:'end-bad'
+  }
+};
+ 
+const W = 140, H = 50;
+ 
+const NODES = {
+  intro:             { x: 530, y:  40 },
+  farmacia:          { x: 230, y: 160 },
+  banco:             { x: 530, y: 160 },
+  noticiero:         { x: 830, y: 160 },
+  reclamo_farmacia:  { x:  60, y: 280 },
+  plaza_vacia:       { x: 300, y: 380 },
+  espera_banco:      { x: 430, y: 280 },
+  cajero:            { x: 600, y: 280 },
+  colectivo:         { x: 750, y: 280 },
+  encierro:          { x: 890, y: 280 },
+  llamada_hija:      { x:1030, y: 280 },
+  remedios_perdidos: { x: 130, y: 380 },
+  final_victoria:    { x:  20, y: 500 },
+  final_tecnologia:  { x: 200, y: 500 },
+  final_memoria:     { x: 270, y: 500 },
+  final_esperanza:   { x: 380, y: 500 },
+  final_solidaridad: { x: 110, y: 500 },
+  final_reencuentro: { x:1000, y: 400 },
+  final_taxi:        { x: 740, y: 400 },
+  final_reclamo:     { x: 570, y: 400 },
+  final_espera:      { x: 430, y: 400 },
+  final_delirio:     { x: 900, y: 400 },
+};
+ 
+const EDGES = [
+  { from:'intro', to:'farmacia',         label:'💊 Farmacia', dash:false },
+  { from:'intro', to:'banco',            label:'🏦 Banco', dash:false },
+  { from:'intro', to:'noticiero',        label:'📺 Noticiero', dash:false },
+  { from:'farmacia', to:'reclamo_farmacia', label:'⚔️ Reclamar', dash:false },
+  { from:'farmacia', to:'banco',            label:'🏦 Ir al banco', dash:true },
+  { from:'farmacia', to:'plaza_vacia',      label:'🏠 Rendirse', dash:false },
+  { from:'banco', to:'espera_banco',  label:'⏳ Esperar', dash:false },
+  { from:'banco', to:'cajero',        label:'🏧 Cajero', dash:false },
+  { from:'banco', to:'colectivo',     label:'🚌 Colectivo', dash:false },
+  { from:'noticiero', to:'farmacia',      label:'⚔️ Salir a luchar', dash:true },
+  { from:'noticiero', to:'encierro',      label:'🔒 Encerrarse', dash:false },
+  { from:'noticiero', to:'llamada_hija',  label:'📞 Llamar a Claudia', dash:false },
+  { from:'reclamo_farmacia', to:'final_victoria',    label:'🏆 Victoria', dash:false },
+  { from:'reclamo_farmacia', to:'remedios_perdidos', label:'💔 Sin remedios', dash:false },
+  { from:'espera_banco', to:'final_tecnologia', label:'📱 App', dash:false },
+  { from:'espera_banco', to:'cajero',           label:'🚫 Rechazo', dash:true },
+  { from:'espera_banco', to:'final_espera',     label:'⏰ Persistir', dash:false },
+  { from:'cajero', to:'final_reclamo', label:'⚖️ Defensa', dash:false },
+  { from:'cajero', to:'plaza_vacia',   label:'😢 Llorar', dash:false },
+  { from:'colectivo', to:'plaza_vacia', label:'🚶 A pie', dash:false },
+  { from:'colectivo', to:'final_taxi',  label:'🚕 Taxi', dash:false },
+  { from:'encierro', to:'llamada_hija', label:'🚪 Salir', dash:false },
+  { from:'encierro', to:'final_delirio',label:'🌀 Quedarse', dash:false },
+  { from:'llamada_hija', to:'final_reencuentro', label:'❤️ Visita', dash:false },
+  { from:'llamada_hija', to:'encierro',           label:'📺 Recaída', dash:true },
+  { from:'plaza_vacia', to:'final_memoria',   label:'💬 Recordar', dash:false },
+  { from:'plaza_vacia', to:'final_esperanza', label:'🌅 Intentar', dash:false },
+  { from:'remedios_perdidos', to:'final_solidaridad', label:'🤝 Aceptar ayuda', dash:false },
+  { from:'remedios_perdidos', to:'final_delirio',      label:'💊 Vencidos', dash:true },
+];
+ 
+const TYPE_COLORS = {
+  'start':    { fill:'#1a1640', stroke:'#534AB7', text:'#c8c4ff' },
+  'main':     { fill:'#2a120a', stroke:'#993C1D', text:'#ffb8a0' },
+  'mid':      { fill:'#0a2018', stroke:'#0F6E56', text:'#7ee8c8' },
+  'hinge':    { fill:'#2a1a04', stroke:'#854F0B', text:'#ffd08a' },
+  'end-good': { fill:'#0a1a04', stroke:'#3B6D11', text:'#a8e070' },
+  'end-bad':  { fill:'#1a0404', stroke:'#A32D2D', text:'#ff9090' },
+};
+ 
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('map-canvas');
+ 
+const xs = Object.values(NODES).map(n=>n.x);
+const ys = Object.values(NODES).map(n=>n.y);
+const SVG_W = Math.max(...xs) + W + 60;
+const SVG_H = Math.max(...ys) + H + 80;
+svg.setAttribute('width', SVG_W);
+svg.setAttribute('height', SVG_H);
+svg.setAttribute('viewBox', `0 0 ${SVG_W} ${SVG_H}`);
+ 
+const defs = document.createElementNS(NS,'defs');
+defs.innerHTML = `
+  <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <marker id="arr-gold" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+`;
+svg.appendChild(defs);
+ 
+const edgeLayer  = document.createElementNS(NS,'g'); edgeLayer.id = 'edge-layer';
+const labelLayer = document.createElementNS(NS,'g'); labelLayer.id = 'label-layer';
+const nodeLayer  = document.createElementNS(NS,'g'); nodeLayer.id = 'node-layer';
+svg.appendChild(edgeLayer);
+svg.appendChild(labelLayer);
+svg.appendChild(nodeLayer);
+ 
+function cx(id){ return NODES[id].x + W/2; }
+function cy(id){ return NODES[id].y + H/2; }
+ 
+function edgePoint(fromId, toId, side) {
+  const n = NODES[fromId];
+  const fx = n.x + W/2, fy = n.y + H/2;
+  const tx = NODES[toId].x + W/2, ty = NODES[toId].y + H/2;
+  const dx = tx-fx, dy = ty-fy;
+  const absDx = Math.abs(dx), absDy = Math.abs(dy);
+  if(side === 'from') {
+    if(absDy > absDx) return dy>0 ? {x:fx, y:n.y+H} : {x:fx, y:n.y};
+    return dx>0 ? {x:n.x+W, y:fy} : {x:n.x, y:fy};
+  } else {
+    const m = NODES[toId];
+    const mx = m.x+W/2, my = m.y+H/2;
+    if(absDy > absDx) return dy>0 ? {x:mx, y:m.y} : {x:mx, y:m.y+H};
+    return dx>0 ? {x:m.x, y:my} : {x:m.x+W, y:my};
+  }
+}
+ 
+EDGES.forEach(e => {
+  const f = edgePoint(e.from, e.to, 'from');
+  const t = edgePoint(e.from, e.to, 'to');
+ 
+  const path = document.createElementNS(NS,'path');
+  const cp1x = f.x, cp1y = f.y + (t.y-f.y)*0.4;
+  const cp2x = t.x, cp2y = t.y - (t.y-f.y)*0.4;
+  path.setAttribute('d', `M${f.x},${f.y} C${cp1x},${cp1y} ${cp2x},${cp2y} ${t.x},${t.y}`);
+  path.setAttribute('fill','none');
+  path.setAttribute('stroke', e.dash ? '#555' : '#888780');
+  path.setAttribute('stroke-width', '1.2');
+  path.setAttribute('stroke-dasharray', e.dash ? '5 3' : 'none');
+  path.setAttribute('marker-end','url(#arr)');
+  path.classList.add('edge-path');
+  path.dataset.from = e.from;
+  path.dataset.to = e.to;
+  edgeLayer.appendChild(path);
+ 
+  const lx = (f.x + t.x)/2 + (t.y<f.y ? -2 : 2);
+  const ly = (f.y + t.y)/2;
+ 
+  const txt = document.createElementNS(NS,'text');
+  txt.setAttribute('x', lx);
+  txt.setAttribute('y', ly);
+  txt.setAttribute('text-anchor','middle');
+  txt.setAttribute('dominant-baseline','central');
+  txt.setAttribute('font-size','9');
+  txt.setAttribute('font-family','DM Mono, monospace');
+  txt.setAttribute('fill','#aaa');
+  txt.textContent = e.label;
+  txt.classList.add('edge-label');
+  txt.dataset.from = e.from; txt.dataset.to = e.to;
+  labelLayer.appendChild(txt);
+});
+ 
+Object.keys(NODES).forEach(id => {
+  const scene = SCENES[id];
+  if(!scene) return;
+  const pos = NODES[id];
+  const col = TYPE_COLORS[scene.type] || TYPE_COLORS['mid'];
+ 
+  const g = document.createElementNS(NS,'g');
+  g.classList.add('node-group');
+  g.dataset.id = id;
+ 
+  const rect = document.createElementNS(NS,'rect');
+  rect.setAttribute('x', pos.x);
+  rect.setAttribute('y', pos.y);
+  rect.setAttribute('width', W);
+  rect.setAttribute('height', H);
+  rect.setAttribute('rx', '8');
+  rect.setAttribute('fill', col.fill);
+  rect.setAttribute('stroke', col.stroke);
+  rect.setAttribute('stroke-width', '1');
+  rect.classList.add('node-rect');
+  g.appendChild(rect);
+ 
+  const title = document.createElementNS(NS,'text');
+  title.setAttribute('x', pos.x + W/2);
+  title.setAttribute('y', pos.y + (scene.endings > 0 ? H/2 - 6 : H/2));
+  title.setAttribute('text-anchor','middle');
+  title.setAttribute('dominant-baseline','central');
+  title.setAttribute('font-size','11');
+  title.setAttribute('font-weight','600');
+  title.setAttribute('font-family','Lora, Georgia, serif');
+  title.setAttribute('fill', col.text);
+  const lbl = scene.label.length > 18 ? scene.label.slice(0,17)+'…' : scene.label;
+  title.textContent = lbl;
+  g.appendChild(title);
+ 
+  if(scene.endings > 0) {
+    const badgeX = pos.x + W/2;
+    const badgeY = pos.y + H/2 + 9;
+    const badgeTxt = document.createElementNS(NS,'text');
+    badgeTxt.setAttribute('x', badgeX);
+    badgeTxt.setAttribute('y', badgeY);
+    badgeTxt.setAttribute('text-anchor','middle');
+    badgeTxt.setAttribute('dominant-baseline','central');
+    badgeTxt.setAttribute('font-size','8.5');
+    badgeTxt.setAttribute('font-family','DM Mono, monospace');
+    badgeTxt.setAttribute('fill', col.stroke);
+    badgeTxt.textContent = `${scene.endings} final${scene.endings>1?'es':''}`;
+    g.appendChild(badgeTxt);
+  }
+ 
+  g.addEventListener('click', () => selectNode(id));
+  g.addEventListener('mouseenter', () => highlightNode(id));
+  g.addEventListener('mouseleave', () => clearHighlight());
+ 
+  nodeLayer.appendChild(g);
+});
+ 
+function highlightNode(id) {
+  document.querySelectorAll('.edge-path').forEach(p => p.classList.add('dimmed'));
+  document.querySelectorAll('.edge-label').forEach(p => p.classList.add('dimmed'));
+  document.querySelectorAll('.node-group').forEach(g => g.style.opacity = '0.35');
+ 
+  const thisG = document.querySelector(`.node-group[data-id="${id}"]`);
+  if(thisG) { thisG.style.opacity = '1'; thisG.classList.add('highlighted'); }
+ 
+  EDGES.forEach(e => {
+    if(e.from === id || e.to === id) {
+      const otherId = e.from === id ? e.to : e.from;
+      const otherG = document.querySelector(`.node-group[data-id="${otherId}"]`);
+      if(otherG) otherG.style.opacity = '1';
+ 
+      document.querySelectorAll(`.edge-path[data-from="${e.from}"][data-to="${e.to}"]`).forEach(p => {
+        p.classList.remove('dimmed');
+        p.classList.add('highlighted');
+        p.setAttribute('stroke','#c8a84b');
+        p.setAttribute('marker-end','url(#arr-gold)');
+      });
+      document.querySelectorAll(`.edge-label[data-from="${e.from}"][data-to="${e.to}"]`).forEach(p => {
+        p.classList.remove('dimmed');
+        p.setAttribute('fill','#c8a84b');
+      });
+    }
+  });
+}
+ 
+function clearHighlight() {
+  document.querySelectorAll('.edge-path').forEach(p => {
+    p.classList.remove('dimmed','highlighted');
+    p.setAttribute('stroke', p.getAttribute('stroke-dasharray') !== 'none' ? '#555' : '#888780');
+    p.setAttribute('marker-end','url(#arr)');
+  });
+  document.querySelectorAll('.edge-label').forEach(p => {
+    p.classList.remove('dimmed');
+    p.setAttribute('fill','#aaa');
+  });
+  document.querySelectorAll('.node-group').forEach(g => {
+    g.style.opacity = '1';
+    g.classList.remove('highlighted');
+  });
+}
+ 
+function selectNode(id) {
+  const scene = SCENES[id];
+  if(!scene) return;
+  const col = TYPE_COLORS[scene.type];
+ 
+  document.getElementById('panel-placeholder').style.display = 'none';
+  const info = document.getElementById('scene-info');
+  info.classList.add('visible');
+ 
+  const endBadge = scene.endings > 0
+    ? `<div class="endings-badge" style="margin-bottom:14px;">🎯 Lleva a <strong>${scene.endings}</strong> final${scene.endings>1?'es':''}</div>`
+    : '';
+ 
+  const charHTML = scene.characters.map(c =>
+    `<span class="character-pill"><span class="avatar">${c.avatar}</span>${c.name}</span>`
+  ).join('');
+ 
+  const choiceHTML = scene.choices.map(c =>
+    `<div class="choice-item"><span class="choice-icon">${c.icon}</span>
+      <span>${c.text}<span class="choice-tag">${c.tag}</span></span></div>`
+  ).join('');
+ 
+  info.innerHTML = `
+    <div class="scene-chapter" style="color:${col.stroke}">${scene.chapter}</div>
+    <div class="scene-title">${scene.label}</div>
+    ${endBadge}
+    <div class="scene-narration">${scene.narration}</div>
+    ${scene.characters.length ? `
+      <div class="scene-section-title">Personajes</div>
+      <div class="scene-characters">${charHTML}</div>
+    ` : ''}
+    ${scene.choices.length ? `
+      <div class="scene-section-title">Decisiones posibles</div>
+      <div class="scene-choices">${choiceHTML}</div>
+    ` : `<div style="font-size:12px;color:var(--text-dim);font-style:italic;">— Fin del recorrido —</div>`}
+  `;
+}
+ 
+// PAN & ZOOM
+const mapArea = document.getElementById('map-area');
+let scale = 0.72, tx = 20, ty = 20;
+let dragging = false, lastX = 0, lastY = 0;
+ 
+function applyTransform() {
+  svg.style.transform = `translate(${tx}px,${ty}px) scale(${scale})`;
+  document.getElementById('zoom-label').textContent = Math.round(scale*100)+'%';
+}
+ 
+function zoom(factor) {
+  const rect = mapArea.getBoundingClientRect();
+  const cx = rect.width/2, cy = rect.height/2;
+  tx = cx - (cx - tx)*factor;
+  ty = cy - (cy - ty)*factor;
+  scale *= factor;
+  scale = Math.min(Math.max(scale, 0.2), 3);
+  applyTransform();
+}
+ 
+function resetView() {
+  const rect = mapArea.getBoundingClientRect();
+  scale = Math.min(rect.width / SVG_W, rect.height / SVG_H) * 0.9;
+  tx = (rect.width - SVG_W * scale) / 2;
+  ty = (rect.height - SVG_H * scale) / 2;
+  applyTransform();
+}
+ 
+mapArea.addEventListener('mousedown', e => {
+  if(e.target.closest('.node-group')) return;
+  dragging = true; lastX = e.clientX; lastY = e.clientY;
+  mapArea.classList.add('dragging');
+});
+window.addEventListener('mousemove', e => {
+  if(!dragging) return;
+  tx += e.clientX - lastX; ty += e.clientY - lastY;
+  lastX = e.clientX; lastY = e.clientY;
+  applyTransform();
+});
+window.addEventListener('mouseup', () => { dragging = false; mapArea.classList.remove('dragging'); });
+mapArea.addEventListener('wheel', e => {
+  e.preventDefault();
+  zoom(e.deltaY < 0 ? 1.1 : 0.9);
+}, { passive: false });
+ 
+resetView();
+</script>
+</body>
+</html>
